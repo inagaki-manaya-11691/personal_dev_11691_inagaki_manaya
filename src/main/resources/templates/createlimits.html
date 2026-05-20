@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>食品登録</title>
+</head>
+
+<body>
+	<header th:replace="~{Limitsheader}"></header>
+	<main>
+		<h1>食品登録</h1>
+		<form action="" method="post">
+			<table border="1">
+				<tr>
+					<th>消費・賞味</th>
+					<td>
+						<input type="radio" name="limits" value="true" checked>消費期限
+						<input type="radio" name="limits" value="false">賞味期限
+					</td>
+				</tr>
+				<tr>
+					<th>期限</th>
+					<td>
+						<input type="date" name="kigen">
+					</td>
+				</tr>
+				<tr>
+					<th>食品名</th>
+					<td>
+						<input type="text" name="foodname">
+					</td>
+				</tr>
+				<tr>
+					<th>カテゴリー</th>
+					<td>
+						<input type="radio" name="cate" value="1" checked>主食
+						<input type="radio" name="cate" value="2">肉
+						<input type="radio" name="cate" value="3">魚
+						<input type="radio" name="cate" value="4">青果
+						<input type="radio" name="cate" value="5">飲み物
+						<input type="radio" name="cate" value="6">調味料
+						<input type="radio" name="cate" value="7">その他
+					</td>
+				</tr>
+				<tr>
+					<th>登録日</th>
+					<td><input type="date" name="indate"></td>
+				</tr>
+				<tr>
+					<th>個数</th>
+					<td>
+						<input type="number" name="quantity">
+					</td>
+				</tr>
+			</table>
+			<button>新規作成</button>
+		</form>
+	</main>
+</body>
+
+</html>

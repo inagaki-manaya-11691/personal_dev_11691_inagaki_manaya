@@ -68,6 +68,7 @@ public class UserController {
 
 		for (Users u : ulist) {
 			if (u.getEmail().equals(email) && u.getPassword().equals(password)) {
+				musers.setId(u.getId());
 				musers.setName(u.getName());
 				return "redirect:/limits";
 			}

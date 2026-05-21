@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>期限管理システム</title>
+</head>
+
+<body>
+	<header th:replace="~{Limitsheader}"></header>
+
+	<a href="/limits">全商品</a>
+	<a th:each="c:${categories}" th:href="'/limits?categoryId='+${c.id}">
+		<span th:text="${c.name}" style="padding-left: 10px;"></span>
+	</a>
+	<table border="1">
+		<tr>
+			<th>消費期限
+				<br>賞味期限
+			</th>
+			<th>期限</th>
+			<th>食品名</th>
+			<th>カテゴリ</th>
+			<th>登録日</th>
+			<th>個数</th>
+			<th>消費</th>
+			<th>更新</th>
+			<th>削除</th>
+		</tr>
+		<th:block th:each="food:${foods}" th:if="${food.usersId} == ${@musers.id}">
+			<tr>
+				<td>
+					<th:block th:if="${food.limits}" th:text="消費">
+					</th:block>
+					<th:block th:unless="${food.limits}" th:text="賞味">
+					</th:block>
+				</td>
+				<td th:text="${food.limitdate}"></td>
+				<td th:text="${food.foodname}"></td>
+				<td th:text="${food.category.name}"></td>
+				<td th:text="${food.createAt}"></td>
+				<td th:text="${food.quantity}"></td>
+				<td>
+					<form action="/limits/eat" method="post">
+						<input type="number" name="eatNumber">
+						<button>食</button>
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/limits/{foodId}/edit(foodId=${food.id})}" method="get">
+						<button>更新</button>
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/limits/{foodId}/delete(foodId=${food.id})}" method="post">
+						<button>削除</button>
+					</form>
+				</td>
+			</tr>
+		</th:block>
+	</table>
+	<a href="/limits/new">新規登録</a>
+
+
+</body>
+
+</html>

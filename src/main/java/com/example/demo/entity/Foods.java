@@ -11,9 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-
-import aQute.bnd.annotation.headers.Category;
 
 @Entity
 @Table(name = "foods")
@@ -24,12 +21,12 @@ public class Foods {
 
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	private Category category; // カテゴリー
+	private Categories category; // カテゴリー
 
-	@Column(name = "user_id")
-	private Integer userId; // ユーザーID
+	@Column(name = "users_id")
+	private Integer usersId; // ユーザーID
 
-	@Column(name = "food_name")
+	@Column(name = "foods_name")
 	private String foodname; // 食品名
 
 	private Boolean limits; // 消費か賞味か
@@ -40,15 +37,16 @@ public class Foods {
 	@Column(name = "limits_date")
 	private Date limitdate; // 期限が何日か
 
-	@Transient // 永続化対象外
 	private Integer quantity; // 数量
 
 	public Foods() {
 	}
 
-	public Foods(Category category, String foodname, Boolean limits, LocalDateTime createAt, Date limitdate,
+	public Foods(Integer usersId, Categories category, String foodname, Boolean limits, LocalDateTime createAt,
+			Date limitdate,
 			Integer quantity) {
 		super();
+		this.usersId = usersId;
 		this.category = category;
 		this.foodname = foodname;
 		this.limits = limits;
@@ -61,64 +59,60 @@ public class Foods {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public Categories getCategory() {
+		return category;
 	}
 
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public Integer getUsersId() {
+		return usersId;
 	}
 
 	public String getFoodname() {
 		return foodname;
 	}
 
-	public void setFoodname(String foodname) {
-		this.foodname = foodname;
-	}
-
 	public Boolean getLimits() {
 		return limits;
-	}
-
-	public void setLimits(Boolean limits) {
-		this.limits = limits;
 	}
 
 	public LocalDateTime getCreateAt() {
 		return createAt;
 	}
 
-	public void setCreateAt(LocalDateTime createAt) {
-		this.createAt = createAt;
+	public Date getLimitdate() {
+		return limitdate;
 	}
 
 	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
+	public void setCategory(Categories category) {
 		this.category = category;
 	}
 
-	public Date getLimitdate() {
-		return limitdate;
+	public void setUsersId(Integer usersId) {
+		this.usersId = usersId;
+	}
+
+	public void setFoodname(String foodname) {
+		this.foodname = foodname;
+	}
+
+	public void setLimits(Boolean limits) {
+		this.limits = limits;
+	}
+
+	public void setCreateAt(LocalDateTime createAt) {
+		this.createAt = createAt;
 	}
 
 	public void setLimitdate(Date limitdate) {
 		this.limitdate = limitdate;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 
 }

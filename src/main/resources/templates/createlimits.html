@@ -10,7 +10,8 @@
 	<header th:replace="~{Limitsheader}"></header>
 	<main>
 		<h1>食品登録</h1>
-		<form action="" method="post">
+		<form action="/limits/add" method="post">
+			<input type="hidden" name="usersId" th:value="${@musers.id}">
 			<table border="1">
 				<tr>
 					<th>消費・賞味</th>
@@ -22,7 +23,7 @@
 				<tr>
 					<th>期限</th>
 					<td>
-						<input type="date" name="kigen">
+						<input type="date" name="limitdate">
 					</td>
 				</tr>
 				<tr>
@@ -34,18 +35,14 @@
 				<tr>
 					<th>カテゴリー</th>
 					<td>
-						<input type="radio" name="cate" value="1" checked>主食
-						<input type="radio" name="cate" value="2">肉
-						<input type="radio" name="cate" value="3">魚
-						<input type="radio" name="cate" value="4">青果
-						<input type="radio" name="cate" value="5">飲み物
-						<input type="radio" name="cate" value="6">調味料
-						<input type="radio" name="cate" value="7">その他
+						<input type="radio" name="categoryId" value="1" checked>主食
+						<input type="radio" name="categoryId" value="2">肉
+						<input type="radio" name="categoryId" value="3">魚
+						<input type="radio" name="categoryId" value="4">青果
+						<input type="radio" name="categoryId" value="5">飲み物
+						<input type="radio" name="categoryId" value="6">調味料
+						<input type="radio" name="categoryId" value="7">その他
 					</td>
-				</tr>
-				<tr>
-					<th>登録日</th>
-					<td><input type="date" name="indate"></td>
 				</tr>
 				<tr>
 					<th>個数</th>

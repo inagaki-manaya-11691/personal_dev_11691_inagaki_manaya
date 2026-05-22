@@ -11,30 +11,32 @@
 	<hr>
 	<main>
 		<h2>ユーザー新規登録</h2>
-		<p>名前・メールアドレス・パスワードを登録してください。</p>
-		<th:block th:if="${msg}!=null">
-			<span>[[${msg}]]</span>
+		名前・メールアドレス・パスワードを登録してください。
+		<th:block th:if="${error}">
+			<div th:each="e:${error}">
+				<span th:text="${e}" style="color: red;"></span>
+			</div>
 		</th:block>
 		<form action="/users/add" method="post">
 			<table>
 				<tr>
 					<td>
-						<input type="text" name="name" placeholder="名前">
+						<input type="text" name="name" th:value="${name}" placeholder="名前">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="email" name="email" placeholder="メールアドレス">
+						<input type="email" name="email" th:value="${email}" placeholder="メールアドレス">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="text" name="password" placeholder="パスワード">
+						<input type="text" name="password" th:value="${password}" placeholder="パスワード">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="text" name="password_confirm" placeholder="パスワード（確認）">
+						<input type="text" name="password_confirm" th:value="${password_confirm}" placeholder="パスワード（確認）">
 					</td>
 				</tr>
 			</table>

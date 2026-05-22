@@ -25,4 +25,8 @@ INSERT INTO foods (category_id, users_id, foods_name, limits, createAt, limits_d
 
 -- foods テーブルにデータを挿入（鈴木一郎）
 INSERT INTO foods (category_id, users_id, foods_name, limits, createAt, limits_date, quantity) VALUES
-(1, 2, '鈴木の米', false, '2026-05-20 15:00:00', '2026-05-25', 1);
+(1, 2, '鈴木の米', false, '2026-05-20 15:00:00', '2026-05-21', 1),
+(1, 2, '鈴木のリンゴ', true, '2026-05-20 15:00:00', '2026-05-22', 3),
+(1, 2, '鈴木のリンゴ', true, '2026-05-20 15:00:00', '2026-05-23', 2),
+(1, 2, '鈴木のリンゴ', true, '2026-05-20 15:00:00', '2026-05-24', 1),
+(1, 2, '鈴木のリンゴ', true, '2026-05-20 15:00:00', '2026-05-25', 1);

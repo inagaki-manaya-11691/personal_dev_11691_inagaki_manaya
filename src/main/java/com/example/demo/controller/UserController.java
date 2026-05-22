@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
@@ -40,10 +41,34 @@ public class UserController {
 			@RequestParam(defaultValue = "") String password,
 			@RequestParam(defaultValue = "") String password_confirm,
 			Model model) {
+		List<String> errorlist = new ArrayList<>();
+		boolean check = false;
+		if (name.equals("")) {
+			errorlist.add("名前は必須です");
+			check = true;
+		}
+		if (email.equals("")) {
+			errorlist.add("メールアドレスは必須です");
+			check = true;
+		}
+		if (password.equals("")) {
+			errorlist.add("パスワードは必須です");
+			check = true;
+		} else if (password_confirm.equals("")) {
+			errorlist.add("確認用パスワードは必須です");
+			check = true;
+		} else if (!password.equals(password_confirm)) {
+			errorlist.add("パスワードが一致していません");
+			check = true;
+		}
 
-		if (!password.equals(password_confirm)) {
-			model.addAttribute("msg", "パスワードが一致していません");
-			return "redirect:/users/new";
+		if (check) {
+			model.addAttribute("error", errorlist);
+			model.addAttribute("name", name);
+			model.addAttribute("email", email);
+			model.addAttribute("password", password);
+			model.addAttribute("password_confirm", password_confirm);
+			return "addusers";
 		}
 
 		Users user = new Users(name, email, password);
@@ -51,7 +76,7 @@ public class UserController {
 		return "loginForm";
 	}
 
-	//ログイン画面を表示
+	//ログイン画面表示
 	@GetMapping({ "/", "/logout" })
 	public String index() {
 		session.invalidate();
@@ -63,19 +88,18 @@ public class UserController {
 	public String login(@RequestParam(defaultValue = "") String email,
 			@RequestParam(defaultValue = "") String password,
 			Model model) {
-
 		List<Users> ulist = usersRepository.findAll();
-
 		for (Users u : ulist) {
 			if (u.getEmail().equals(email) && u.getPassword().equals(password)) {
 				musers.setId(u.getId());
 				musers.setName(u.getName());
 				return "redirect:/limits";
 			}
-
 		}
 		model.addAttribute("msg", "メールアドレスまたはパスワードが違います");
-		return "redirect:/";
+		model.addAttribute("email", email);
+		model.addAttribute("password", password);
+		return "loginForm";
 	}
 
 }

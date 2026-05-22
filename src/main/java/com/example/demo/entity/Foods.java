@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "foods")
@@ -35,15 +36,18 @@ public class Foods {
 	private LocalDateTime createAt; // 登録日
 
 	@Column(name = "limits_date")
-	private Date limitdate; // 期限が何日か
+	private LocalDate limitdate; // 期限が何日か
 
 	private Integer quantity; // 数量
+
+	@Transient
+	private Long daysBetween;
 
 	public Foods() {
 	}
 
 	public Foods(Integer usersId, Categories category, String foodname, Boolean limits, LocalDateTime createAt,
-			Date limitdate,
+			LocalDate limitdate,
 			Integer quantity) {
 		super();
 		this.usersId = usersId;
@@ -54,6 +58,19 @@ public class Foods {
 		this.limitdate = limitdate;
 		this.quantity = quantity;
 	}
+
+	public Foods(Categories category, Integer usersId, String foodname, Boolean limits, LocalDateTime createAt,
+			LocalDate limitdate, Integer quantity, Long daysBetween) {
+		super();
+		this.category = category;
+		this.usersId = usersId;
+		this.foodname = foodname;
+		this.limits = limits;
+		this.createAt = createAt;
+		this.limitdate = limitdate;
+		this.quantity = quantity;
+		this.daysBetween = daysBetween;
+	};
 
 	public Integer getId() {
 		return id;
@@ -79,12 +96,16 @@ public class Foods {
 		return createAt;
 	}
 
-	public Date getLimitdate() {
+	public LocalDate getLimitdate() {
 		return limitdate;
 	}
 
 	public Integer getQuantity() {
 		return quantity;
+	}
+
+	public Long getDaysBetween() {
+		return daysBetween;
 	}
 
 	public void setCategory(Categories category) {
@@ -107,12 +128,16 @@ public class Foods {
 		this.createAt = createAt;
 	}
 
-	public void setLimitdate(Date limitdate) {
+	public void setLimitdate(LocalDate limitdate) {
 		this.limitdate = limitdate;
 	}
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+
+	public void setDaysBetween(Long daysBetween) {
+		this.daysBetween = daysBetween;
 	}
 
 }

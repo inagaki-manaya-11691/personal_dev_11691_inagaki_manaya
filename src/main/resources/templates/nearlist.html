@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>期限管理システム</title>
+	<title>期限間近リスト</title>
 </head>
 
 <body>
@@ -54,31 +54,38 @@
 				<th:block th:if="${food.daysBetween ge 3}">
 					<td th:text="'あと' + ${food.daysBetween} + '日'"></td>
 				</th:block>
-					<td th:text=" ${food.foodname}"></td>
-					<td th:text="${food.category.name}"></td>
-					<td th:text="${food.createAt}"></td>
-					<td th:text="${food.quantity}"></td>
-					<td>
-						<form th:action="@{/limits/{foodId}/eat(foodId=${food.id})}" method="post">
-							<input type="number" name="eatNumber" value="0">
-							<button>食</button>
-						</form>
-					</td>
-					<td>
-						<form th:action="@{/limits/{foodId}/edit(foodId=${food.id})}" method="get">
-							<button>更新</button>
-						</form>
-					</td>
-					<td>
-						<form th:action="@{/limits/{foodId}/delete(foodId=${food.id})}" method="post">
-							<button>削除</button>
-						</form>
-					</td>
+				<td th:text=" ${food.foodname}"></td>
+				<td th:text="${food.category.name}"></td>
+				<td th:text="${food.createAt}"></td>
+				<td th:text="${food.quantity}"></td>
+				<td>
+					<form th:action="@{/limits/{foodId}/eat(foodId=${food.id})}" method="post">
+						<input type="number" name="eatNumber" value="0">
+						<button>食</button>
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/limits/{foodId}/edit(foodId=${food.id})}" method="get">
+						<button>更新</button>
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/limits/{foodId}/delete(foodId=${food.id})}" method="post">
+						<button>削除</button>
+					</form>
+				</td>
 			</tr>
 			</th:block>
 		</table>
-		<a href="/limits/new">新規登録</a>
-		<a href="/shop/lost">消費リスト</a>
+
+		<form action="/shop/lost" method="post">
+			<p>
+				クックパッド♪
+				<input type="text" name="search">
+				<button>タッチ！</button>
+				→<a th:href="${url}">検索</a>
+			</p>
+		</form>
 
 	</main>
 </body>

@@ -4,17 +4,21 @@
 <head>
 	<meta charset="UTF-8">
 	<title>期限管理システム</title>
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 	<header th:replace="~{Limitsheader}"></header>
-	<hr>
+	<nav th:replace="~{navi}"></nav>
 	<main>
+		<h2>食材一覧</h2>
+		<p th:if="${errormessage}" th:text="${errormessage}" style="color: red;"></p>
 		<a href="/limits">全商品</a>
+		<!--カテゴリーごとに切り替えリンク-->
 		<a th:each="c:${categories}" th:href="'/limits?categoryId='+${c.id}">
 			<span th:text="${c.name}" style="padding-left: 10px;"></span>
 		</a>
-		<table border="1">
+		<table class="ta" border="1">
 			<tr>
 				<th>消費期限
 					<br>賞味期限
@@ -28,13 +32,15 @@
 				<th>更新</th>
 				<th>削除</th>
 			</tr>
-			<tr th:each="food:${foods}" th:if="${food.usersId} == ${@musers.id}">
-				<td>
+			<!--ユーザーごとに表示-->
+			<tr th:each="food:${foods}" th:if="${food.usersId} == ${@musers.id}" class="tc"> 
+				<td><!--消費か賞味かを表示-->
 					<th:block th:if="${food.limits}" th:text="消費">
 					</th:block>
 					<th:block th:unless="${food.limits}" th:text="賞味">
 					</th:block>
 				</td>
+				<!--残り日数に応じて表示切替＆色変え-->
 				<th:block th:if="${food.daysBetween eq 2}">
 					<td style="background-color: sandybrown; color: white;">
 						<span th:text="'あと' + ${food.daysBetween} + '日'"></span>
@@ -54,22 +60,23 @@
 				<th:block th:if="${food.daysBetween ge 3}">
 					<td th:text="'あと' + ${food.daysBetween} + '日'"></td>
 				</th:block>
-					<td th:text=" ${food.foodname}"></td>
-					<td th:text="${food.category.name}"></td>
-					<td th:text="${food.createAt}"></td>
-					<td th:text="${food.quantity}"></td>
-					<td>
+					<td th:text=" ${food.foodname}"></td><!--食材名表示-->
+					<td th:text="${food.category.name}"></td><!--カテゴリー名表示-->
+					<td th:text="${food.createAt}"></td><!--登録日表示-->
+					<td th:text="${food.quantity}"></td><!--個数表示-->
+					
+					<td><!--個数減らすボタン-->
 						<form th:action="@{/limits/{foodId}/eat(foodId=${food.id})}" method="post">
 							<input type="number" name="eatNumber" value="0">
 							<button>食</button>
 						</form>
 					</td>
-					<td>
+					<td><!--データ更新ボタン-->
 						<form th:action="@{/limits/{foodId}/edit(foodId=${food.id})}" method="get">
 							<button>更新</button>
 						</form>
 					</td>
-					<td>
+					<td><!--データ削除ボタン-->
 						<form th:action="@{/limits/{foodId}/delete(foodId=${food.id})}" method="post">
 							<button>削除</button>
 						</form>
@@ -77,9 +84,10 @@
 			</tr>
 			</th:block>
 		</table>
-		<a href="/limits/new">新規登録</a>
-		<a href="/shop/lost">消費リスト</a>
-
+		<form action="/limits/new" method="get">
+			<button class="button-1">商品登録</button>
+		</form>
+		
 	</main>
 </body>
 

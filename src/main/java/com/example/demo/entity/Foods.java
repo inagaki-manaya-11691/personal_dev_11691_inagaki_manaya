@@ -1,7 +1,6 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,10 +32,10 @@ public class Foods {
 	private Boolean limits; // 消費か賞味か
 
 	@Column(name = "createat")
-	private LocalDateTime createAt; // 登録日
+	private LocalDate createAt; // 登録日
 
 	@Column(name = "limits_date")
-	private LocalDate limitdate; // 期限が何日か
+	private LocalDate limitdate; // 期限
 
 	private Integer quantity; // 数量
 
@@ -46,7 +45,7 @@ public class Foods {
 	public Foods() {
 	}
 
-	public Foods(Integer usersId, Categories category, String foodname, Boolean limits, LocalDateTime createAt,
+	public Foods(Integer usersId, Categories category, String foodname, Boolean limits, LocalDate createAt,
 			LocalDate limitdate,
 			Integer quantity) {
 		super();
@@ -59,7 +58,7 @@ public class Foods {
 		this.quantity = quantity;
 	}
 
-	public Foods(Categories category, Integer usersId, String foodname, Boolean limits, LocalDateTime createAt,
+	public Foods(Categories category, Integer usersId, String foodname, Boolean limits, LocalDate createAt,
 			LocalDate limitdate, Integer quantity, Long daysBetween) {
 		super();
 		this.category = category;
@@ -92,7 +91,7 @@ public class Foods {
 		return limits;
 	}
 
-	public LocalDateTime getCreateAt() {
+	public LocalDate getCreateAt() {
 		return createAt;
 	}
 
@@ -124,7 +123,7 @@ public class Foods {
 		this.limits = limits;
 	}
 
-	public void setCreateAt(LocalDateTime createAt) {
+	public void setCreateAt(LocalDate createAt) {
 		this.createAt = createAt;
 	}
 

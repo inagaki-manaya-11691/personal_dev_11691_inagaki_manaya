@@ -4,17 +4,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title>期限間近リスト</title>
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 	<header th:replace="~{Limitsheader}"></header>
-	<hr>
+	<nav th:replace="~{navi}"></nav>
 	<main>
-		<a href="/limits">全商品</a>
-		<a th:each="c:${categories}" th:href="'/limits?categoryId='+${c.id}">
+		<h2>消費リスト</h2>
+		<a href="/shop/lost">全商品</a>
+		<a th:each="c:${categories}" th:href="'/shop/lost?categoryId='+${c.id}">
 			<span th:text="${c.name}" style="padding-left: 10px;"></span>
 		</a>
-		<table border="1">
+		<table class="ta" border="1">
 			<tr>
 				<th>消費期限
 					<br>賞味期限
@@ -77,15 +79,14 @@
 			</tr>
 			</th:block>
 		</table>
-
-		<form action="/shop/lost" method="post">
-			<p>
-				クックパッド♪
-				<input type="text" name="search">
-				<button>タッチ！</button>
-				→<a th:href="${url}">検索</a>
-			</p>
-		</form>
+		
+		<!--クックパッド検索-->
+		<form action="https://cookpad.com/jp/search" method="get">		
+				
+		<label for="search-input">クックパッド検索:</label>		
+		<input class="search" type="search" id="search-input" name="q" placeholder="キーワードを入力">		
+		<button type="submit">検索</button>		
+		</form>		
 
 	</main>
 </body>

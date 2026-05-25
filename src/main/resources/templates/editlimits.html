@@ -4,20 +4,25 @@
 <head>
 	<meta charset="UTF-8">
 	<title>登録内容変更</title>
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 	<header th:replace="~{Limitsheader}"></header>
 	<hr>
+	<nav th:replace="~{navi}"></nav>
+	<hr>
 	<main>
 		<h2>登録内容変更</h2>
 		<form action="" method="post">
-			<table border="1" th:each="foo:${foods}">
+			<table class="ta" border="1" th:each="foo:${foods}">
 				<tr>
 					<th>消費・賞味</th>
 					<td>
-						<input type="radio" name="limits" value="true" checked>消費期限
-						<input type="radio" name="limits" value="false">賞味期限
+						<input type="radio" name="limits" value="true" id="limitt" checked>
+						<label for="limitt">消費期限</label>
+						<input type="radio" name="limits" value="false" id="limitf">
+						<label for="limitf">賞味期限</label> 
 					</td>
 				</tr>
 				<tr>
@@ -35,13 +40,20 @@
 				<tr>
 					<th>カテゴリー</th>
 					<td>
-						<input type="radio" name="categoryId" value="1" checked>主食
-						<input type="radio" name="categoryId" value="2">肉
-						<input type="radio" name="categoryId" value="3">魚
-						<input type="radio" name="categoryId" value="4">青果
-						<input type="radio" name="categoryId" value="5">飲み物
-						<input type="radio" name="categoryId" value="6">調味料
-						<input type="radio" name="categoryId" value="7">その他
+						<input type="radio" name="categoryId" value="1" id="1" checked>
+						<label for="1">主食</label>
+						<input type="radio" name="categoryId" value="2" id="2">
+						<label for="2">肉</label>
+						<input type="radio" name="categoryId" value="3" id="3">
+						<label for="3">魚</label>
+						<input type="radio" name="categoryId" value="4" id="4">
+						<label for="4">青果</label>
+						<input type="radio" name="categoryId" value="5" id="5">
+						<label for="5">飲み物</label>
+						<input type="radio" name="categoryId" value="6" id="6">
+						<label for="6">調味料</label>
+						<input type="radio" name="categoryId" value="7" id="7">
+						<label for="7">その他</label>
 					</td>
 				</tr>
 				<tr>
@@ -51,7 +63,7 @@
 					</td>
 				</tr>
 			</table>
-			<button>更新</button>
+			<button class="button-1">更新</button>
 		</form>
 	</main>
 </body>

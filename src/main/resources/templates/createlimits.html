@@ -4,55 +4,72 @@
 <head>
 	<meta charset="UTF-8">
 	<title>食品登録</title>
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 	<header th:replace="~{Limitsheader}"></header>
-	<hr>
+	<nav th:replace="~{navi}"></nav>
 	<main>
 		<h1>食品登録</h1>
+		<!--エラー処理-->
+		<th:block th:if="${error}">
+			<div th:each="e:${error}">
+				<span th:text="${e}" style="color: red;"></span>
+			</div>
+		</th:block>
 		<form action="/limits/add" method="post">
+			<!--ユーザーIDを取得-->
 			<input type="hidden" name="usersId" th:value="${@musers.id}">
-			<table border="1">
+			<table class="ta" border="1">
 				<tr>
 					<th>消費・賞味</th>
 					<td>
-						<input type="radio" name="limits" value="true" checked>消費期限
-						<input type="radio" name="limits" value="false">賞味期限
+						<input type="radio" name="limits" value="true" id="limitt" checked>
+						<label for="limitt">消費期限</label>
+						<input type="radio" name="limits" value="false" id="limitf">
+						<label for="limitf">賞味期限</label>
 					</td>
 				</tr>
 				<tr>
 					<th>期限</th>
 					<td>
-						<input type="date" name="limitdate">
+						<input type="date" name="limitdate" th:value="${limitdate}">
 					</td>
 				</tr>
 				<tr>
 					<th>食品名</th>
 					<td>
-						<input type="text" name="foodname">
+						<input type="text" name="foodname" th:value="${foodname}">
 					</td>
 				</tr>
 				<tr>
 					<th>カテゴリー</th>
 					<td>
-						<input type="radio" name="categoryId" value="1" checked>主食
-						<input type="radio" name="categoryId" value="2">肉
-						<input type="radio" name="categoryId" value="3">魚
-						<input type="radio" name="categoryId" value="4">青果
-						<input type="radio" name="categoryId" value="5">飲み物
-						<input type="radio" name="categoryId" value="6">調味料
-						<input type="radio" name="categoryId" value="7">その他
+						<input type="radio" name="categoryId" value="1" id="1" checked>
+						<label for="1">主食</label>
+						<input type="radio" name="categoryId" value="2" id="2">
+						<label for="2">肉</label>
+						<input type="radio" name="categoryId" value="3" id="3">
+						<label for="3">魚</label>
+						<input type="radio" name="categoryId" value="4" id="4">
+						<label for="4">青果</label>
+						<input type="radio" name="categoryId" value="5" id="5">
+						<label for="5">飲み物</label>
+						<input type="radio" name="categoryId" value="6" id="6">
+						<label for="6">調味料</label>
+						<input type="radio" name="categoryId" value="7" id="7">
+						<label for="7">その他</label>
 					</td>
 				</tr>
 				<tr>
 					<th>個数</th>
 					<td>
-						<input type="number" name="quantity">
+						<input type="number" name="quantity" th:value="${quantity}">
 					</td>
 				</tr>
 			</table>
-			<button>新規作成</button>
+			<button class="button-1">新規作成</button>
 		</form>
 	</main>
 </body>

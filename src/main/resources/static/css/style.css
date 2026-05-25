@@ -1,0 +1,100 @@
+/*メイン送信ボタン*/
+.button-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+	height:40px;
+    margin:0 auto;
+    padding: .9em 2em;
+    border: 1px solid #2547d0;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #2547d0;
+    font-size: 1em;
+}
+
+.button-1:hover{
+	background-color: blanchedalmond;
+}
+
+/*ログイン画面ボタン*/
+.button-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    margin:0 auto;
+    padding: .9em 2em;
+    border: none;
+    border-radius: 5px;
+    background-color: #2589d0;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.button-2:hover {
+    background-color: #1579c0;
+}
+
+/*ボディ*/
+body{
+	text-align: center;
+	background-color: greenyellow;
+	color:darkslategray;
+}
+/*ヘッダー*/
+header{
+	text-align: right;
+	background-color: palegreen;
+	height:120px;
+}
+header h2{
+	text-align: left;
+	color:black;
+	font-size:25px;
+}
+/*テーブルtd*/
+table{
+	text-align:left;
+	margin:5px auto;
+	min-width: 400px;
+}
+.ta{
+	background-color: white;
+	min-width: 800px;
+	text-align:left;
+}
+/*テーブルヘッダー*/
+table th{
+	text-align:center;
+	background-color: dodgerblue;
+	color:black;
+}
+/*センタリング用*/
+.tc{
+	text-align:center;
+}
+/*テキストボックス*/
+.textbox-3 {
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 3px;
+    background: #f7f7f7;
+    color: #333;
+    font-size: 1em;
+    line-height: 1.5;
+	
+}
+
+.textbox-3::placeholder {
+    color: #999;
+}
+
+ul,li{
+	text-align:left;
+	padding-right:10px;
+	display:flex;
+}

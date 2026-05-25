@@ -4,32 +4,32 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ログイン</title>
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 	<header th:replace="~{Usersheader}"></header>
-	<hr>
 	<main>
 		<h2>ログイン</h2>
 		メールアドレス・パスワードを入力してください。<br>
 		<th:block th:if="${msg}">
-				<span th:text="${msg}" style="color: red;"></span>
+			<span th:text="${msg}" style="color: red;"></span>
 		</th:block>
-			
+
 		<form action="/login" method="post">
 			<table>
 				<tr>
 					<td>
-						<input type="text" name="email" th:value="${email}" placeholder="メールアドレス">
+						<input class="textbox-3" type="text" name="email" th:value="${email}" placeholder="メールアドレス">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="text" name="password" th:value="${password}" placeholder="パスワード">
+						<input class="textbox-3" type="text" name="password" th:value="${password}" placeholder="パスワード">
 					</td>
 				</tr>
 			</table>
-			<button>ログイン</button>
+			<button class="button-2">ログイン</button>
 		</form>
 		<a href="/users/new">新規登録</a>
 		<main>

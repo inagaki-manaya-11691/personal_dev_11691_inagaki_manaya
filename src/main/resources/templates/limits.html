@@ -9,7 +9,9 @@
 
 <body>
 	<header th:replace="~{Limitsheader}"></header>
-	<nav th:replace="~{navi}"></nav>
+	<hr>
+	<nav class="tc" th:replace="~{navi}"></nav>
+	<hr>
 	<main>
 		<h2>食材一覧</h2>
 		<p th:if="${errormessage}" th:text="${errormessage}" style="color: red;"></p>
@@ -33,7 +35,7 @@
 				<th>削除</th>
 			</tr>
 			<!--ユーザーごとに表示-->
-			<tr th:each="food:${foods}" th:if="${food.usersId} == ${@musers.id}" class="tc"> 
+			<tr th:each="food:${foods}" th:if="${food.usersId} == ${@musers.id}" class="tc">
 				<td><!--消費か賞味かを表示-->
 					<th:block th:if="${food.limits}" th:text="消費">
 					</th:block>
@@ -47,47 +49,46 @@
 					</td>
 				</th:block>
 				<th:block th:if="${food.daysBetween eq 1}">
-					<td style="background-color: red; color: white;">
+					<td style="background-color: yellow; color: black;">
 						<span th:text="'あと' + ${food.daysBetween} + '日'"></span>
 					</td>
 				</th:block>
 				<th:block th:if="${food.daysBetween eq 0}">
-					<td th:text="期限当日"></td>
+					<td th:text="期限当日" style="background-color:red; color:white;"></td>
 				</th:block>
 				<th:block th:if="${food.daysBetween lt 0}">
-					<td th:text="期限が切れています"></td>
+					<td th:text="期限が切れています" style="background-color: darkblue; color: white;"></td>
 				</th:block>
 				<th:block th:if="${food.daysBetween ge 3}">
 					<td th:text="'あと' + ${food.daysBetween} + '日'"></td>
 				</th:block>
-					<td th:text=" ${food.foodname}"></td><!--食材名表示-->
-					<td th:text="${food.category.name}"></td><!--カテゴリー名表示-->
-					<td th:text="${food.createAt}"></td><!--登録日表示-->
-					<td th:text="${food.quantity}"></td><!--個数表示-->
-					
-					<td><!--個数減らすボタン-->
-						<form th:action="@{/limits/{foodId}/eat(foodId=${food.id})}" method="post">
-							<input type="number" name="eatNumber" value="0">
-							<button>食</button>
-						</form>
-					</td>
-					<td><!--データ更新ボタン-->
-						<form th:action="@{/limits/{foodId}/edit(foodId=${food.id})}" method="get">
-							<button>更新</button>
-						</form>
-					</td>
-					<td><!--データ削除ボタン-->
-						<form th:action="@{/limits/{foodId}/delete(foodId=${food.id})}" method="post">
-							<button>削除</button>
-						</form>
-					</td>
+				<td th:text=" ${food.foodname}"></td><!--食材名表示-->
+				<td th:text="${food.category.name}"></td><!--カテゴリー名表示-->
+				<td th:text="${food.createAt}"></td><!--登録日表示-->
+				<td th:text="${food.quantity}"></td><!--個数表示-->
+
+				<td><!--個数減らすボタン-->
+					<form th:action="@{/limits/{foodId}/eat(foodId=${food.id})}" method="post">
+						<input type="number" name="eatNumber" value="0">
+						<button>食</button>
+					</form>
+				</td>
+				<td><!--データ更新ボタン-->
+					<form th:action="@{/limits/{foodId}/edit(foodId=${food.id})}" method="get">
+						<button>更新</button>
+					</form>
+				</td>
+				<td><!--データ削除ボタン-->
+					<form th:action="@{/limits/{foodId}/delete(foodId=${food.id})}" method="post">
+						<button>削除</button>
+					</form>
+				</td>
 			</tr>
 			</th:block>
 		</table>
-		<form action="/limits/new" method="get">
-			<button class="button-1">商品登録</button>
-		</form>
-		
+			<form action="/limits/new" method="get">
+				<button class="button-1">商品登録</button>
+			</form>
 	</main>
 </body>
 

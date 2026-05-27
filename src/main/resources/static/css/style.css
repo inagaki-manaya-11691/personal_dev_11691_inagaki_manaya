@@ -1,100 +1,184 @@
 /*メイン送信ボタン*/
 .button-1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-	height:40px;
-    margin:0 auto;
-    padding: .9em 2em;
-    border: 1px solid #2547d0;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #2547d0;
-    font-size: 1em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 150px;
+	height: 40px;
+	margin: 0 auto;
+	padding: .9em 2em;
+	border: 1px solid #2547d0;
+	border-radius: 5px;
+	background-color: #fff;
+	color: #2547d0;
+	font-size: 1em;
 }
 
-.button-1:hover{
+.button-1:hover {
 	background-color: blanchedalmond;
 }
 
 /*ログイン画面ボタン*/
 .button-2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 250px;
-    margin:0 auto;
-    padding: .9em 2em;
-    border: none;
-    border-radius: 5px;
-    background-color: #2589d0;
-    color: #fff;
-    font-weight: 600;
-    font-size: 1em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 250px;
+	margin: 0 auto;
+	padding: .9em 2em;
+	border: none;
+	border-radius: 5px;
+	background-color: #2589d0;
+	color: #fff;
+	font-weight: 600;
+	font-size: 1em;
 }
 
 .button-2:hover {
-    background-color: #1579c0;
+	background-color: #1579c0;
 }
 
 /*ボディ*/
-body{
+body {
 	text-align: center;
-	background-color: greenyellow;
-	color:darkslategray;
+	background-color: lightgray;
+	color: darkslategray;
 }
+
 /*ヘッダー*/
-header{
-	text-align: right;
-	background-color: palegreen;
-	height:120px;
+header {
+	text-align: center;
+	background-color: royalblue;
+	height: 120px;
+	color: white;
 }
-header h2{
-	text-align: left;
-	color:black;
-	font-size:25px;
+
+header h2 {
+	text-align: center;
+	margin-top: 1px;
+	color: white;
+	font-size: 30px;
 }
+
+header a,
+nav a {
+	color: lightblue;
+}
+
+/*平行線*/
+hr {
+	border-top: 2px dashed black;
+}
+
 /*テーブルtd*/
-table{
-	text-align:left;
-	margin:5px auto;
+table {
+	text-align: left;
+	margin: 5px auto;
 	min-width: 400px;
+	border-collapse: collapse;
+	border: 1px solid #7d8bae;
 }
-.ta{
+
+.ta {
 	background-color: white;
 	min-width: 800px;
-	text-align:left;
+	text-align: left;
 }
+
 /*テーブルヘッダー*/
-table th{
-	text-align:center;
+th {
+	text-align: center;
 	background-color: dodgerblue;
-	color:black;
+	color: black;
+	border-collapse: collapse;
+	border: 1px solid #7d8bae;
 }
+
+td {
+	border-collapse: collapse;
+	border: 1px solid #7d8bae;
+}
+
 /*センタリング用*/
-.tc{
-	text-align:center;
+.tc {
+	text-align: center;
 }
+
 /*テキストボックス*/
 .textbox-3 {
-    width: 100%;
-    padding: 8px 10px;
-    border: none;
-    border-radius: 3px;
-    background: #f7f7f7;
-    color: #333;
-    font-size: 1em;
-    line-height: 1.5;
-	
+	width: 95%;
+	padding: 8px 10px;
+	border: none;
+	border-radius: 3px;
+	background: #f7f7f7;
+	color: #333;
+	font-size: 1em;
+	line-height: 1.5;
+
 }
 
 .textbox-3::placeholder {
-    color: #999;
+	color: #999;
 }
 
-ul,li{
-	text-align:left;
-	padding-right:10px;
-	display:flex;
+/*ナビ*/
+ul,
+li {
+	padding-right: 10px;
+	display: flex;
+	text-align: center;
+}
+
+li a {
+	color: blue;
+}
+
+li a:hover {
+	color: darkblue;
+}
+
+/*検索フォーム*/
+.search-form-2 {
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	border-radius: 3px;
+	justify-content: center;
+	flex-direction:row;
+}
+
+.search-form-2 input {
+	width: 250px;
+	height: 45px;
+	padding: 5px 15px;
+	border: none;
+	border-radius: 3px 0 0 3px;
+	box-sizing: border-box;
+	background-color: #f2f2f2;
+	font-size: 1em;
+	outline: none;
+}
+
+.search-form-2 input::placeholder {
+	color: #777777;
+}
+
+.search-form-2 button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50px;
+	height: 45px;
+	border: none;
+	border-radius: 0 3px 3px 0;
+	background-color: #fab700;
+	cursor: pointer;
+}
+
+.search-form-2 button::after {
+	width: 24px;
+	height: 24px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z' fill='%23fff'%3E%3C/path%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	content: '';
 }
